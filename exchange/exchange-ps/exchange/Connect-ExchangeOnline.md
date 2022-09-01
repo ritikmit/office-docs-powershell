@@ -45,6 +45,8 @@ Connect-ExchangeOnline
  [-InlineCredential]
  [-LogDirectoryPath <String>]
  [-LogLevel <LogLevel>]
+ [-ManagedIdentity]
+ [-ManagedIdentityAccountId <String>]
  [-Organization <String>]
  [-PageSize <UInt32>]
  [-ShowBanner]
@@ -214,6 +216,8 @@ Accept wildcard characters: False
 The DelegatedOrganization parameter specifies the customer organization that you want to manage (for example, contosoelectronics.onmicrosoft.com). This parameter only works if the customer organization has agreed to your delegated management via the CSP program.
 
 After you successfully authenticate, the cmdlets in this session are mapped to the customer organization, and all operations in this session are done on the customer organization.
+
+**Note**: Use an .onmicrosoft.com domain for the parameter value. Not doing so might result in permission-related issues when you run commands in the app context. 
 
 ```yaml
 Type: String
@@ -419,7 +423,7 @@ Accept wildcard characters: False
 ```
 
 ### -Device
-**Note**: This parameter is available only in version 2.0.4 or later, and only in PowerShell 7.
+**Note**: This parameter is available in version 2.0.4 or later, and only in PowerShell 7.
 
 The Device switch specifies whether to authenticate interactively computers that don't have web browsers to support single sign-on (SSO). You don't need to specify a value with this switch.
 
@@ -455,7 +459,7 @@ Accept wildcard characters: False
 ```
 
 ### -InlineCredential
-**Note**: This parameter is available only in version 2.0.4 or later, and only in PowerShell 7.
+**Note**: This parameter is available in version 2.0.4 or later, and only in PowerShell 7.
 
 The InlineCredential switch specifies whether to pass credentials directly in the Windows PowerShell window. You don't need to specify a value with this switch.
 
@@ -496,6 +500,46 @@ Accept wildcard characters: False
 
 ### -LogLevel
 The LogLevel parameter specifies the logging level. Valid values are Default and All.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ManagedIdentity
+**Note**: This parameter is available in version 2.0.6-Preview7 or later.
+
+The ManagedIdentity switch connects to Exchange Online using a system-assigned or user-assigned managed identity. You don't need to specify a value with this switch.
+
+Managed identity is currently supported for Azure Virtual Machines and Virtual Machine Scale Sets.
+
+You must use this switch with the Organization parameter.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+Applicable: Exchange Online
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ManagedIdentityAccountId
+**Note**: This parameter is available in version 2.0.6-Preview7 or later.
+
+The ManagedIdentityAccountId parameter specifies the application ID of the service principal that corresponds to the user-assigned managed identity that's used for authentication.
 
 ```yaml
 Type: String
@@ -645,7 +689,7 @@ This parameter is available in version 2.0.6-Preview3 or later of the Exchange O
 
 The UseRPSSession switch allows you to connect to Exchange Online PowerShell using traditional remote PowerShell access to all cmdlets. You don't need to specify a value with this switch.
 
-This switch requires that Basic authentication is enabled in WinRM on the local computer. For more information, see [Prerequisites in the EXO V2 module](https://docs.microsoft.com/powershell/exchange/exchange-online-powershell-v2#prerequisites-for-the-exo-v2-module).
+This switch requires that Basic authentication is enabled in WinRM on the local computer. For more information, see [Prerequisites in the EXO V2 module](https://docs.microsoft.com/powershell/exchange/exchange-online-powershell-v2#turn-on-basic-authentication-in-winrm).
 
 If you don't use this switch, Basic authentication in WinRM is not required, but only the subset of frequently used REST API cmdlets are available.
 
