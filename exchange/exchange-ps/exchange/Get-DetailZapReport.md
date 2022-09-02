@@ -26,9 +26,19 @@ Get-DetailZapReport [-EndDate <System.DateTime>] [-Page <Int32>] [-PageSize <Int
 ```
 
 ## DESCRIPTION
-This cmdlet returns the following information:
+By default, this cmdlet returns information in a table view where the width varies based on the length of individual property values (for example, longer Subject values means fewer additional properties can be displayed). If you append the command with `| Format-List`, the command returns the following information:
 
-
+- Subject
+- Received Time
+- Sender
+- Recipient
+- ZAP Time
+- Original Threat
+- Original Location
+- Updated Threat
+- Updated Delivery Location
+- Delivery Status
+- Detection Technology
 
 You need to be assigned permissions before you can run this cmdlet. Although this topic lists all parameters for the cmdlet, you may not have access to some parameters if they're not included in the permissions assigned to you. To find the permissions required to run any cmdlet or parameter in your organization, see [Find the permissions required to run any Exchange cmdlet](https://docs.microsoft.com/powershell/exchange/find-exchange-cmdlet-permissions).
 
@@ -36,17 +46,26 @@ You need to be assigned permissions before you can run this cmdlet. Although thi
 
 ### Example 1
 ```powershell
-{{ Add example code here }}
+Get-DetailZapReport
 ```
 
-{{ Add example description here }}
+This example returns information from the last two days.
+
+### Example 2
+```powershell
+Get-DetailZapReport -StartDate 08-20-2022 -EndDate 08-22-2022
+```
+
+This example returns information for the specified date range.
 
 ## PARAMETERS
 
 ### -EndDate
 The EndDate parameter specifies the end date of the date range.
 
-Use the short date format that's defined in the Regional Options settings on the computer where you're running the command. For example, if the computer is configured to use the short date format mm/dd/yyyy, enter 09/01/2018 to specify September 1, 2018. You can enter the date only, or you can enter the date and time of day. If you enter the date and time of day, enclose the value in quotation marks ("), for example, "09/01/2018 5:00 PM".
+Use the short date format that's defined in the Regional Options settings on the computer where you're running the command. For example, if the computer is configured to use the short date format mm/dd/yyyy, enter 09/01/2018 to specify September 1, 2018.
+
+Yesterday is the most recent date that you can specify. You can't specify a date that's older than 10 days.
 
 ```yaml
 Type: System.DateTime
@@ -96,7 +115,9 @@ Accept wildcard characters: False
 ### -StartDate
 The StartDate parameter specifies the start date of the date range.
 
-Use the short date format that's defined in the Regional Options settings on the computer where you're running the command. For example, if the computer is configured to use the short date format mm/dd/yyyy, enter 09/01/2018 to specify September 1, 2018. You can enter the date only, or you can enter the date and time of day. If you enter the date and time of day, enclose the value in quotation marks ("), for example, "09/01/2018 5:00 PM".
+Use the short date format that's defined in the Regional Options settings on the computer where you're running the command. For example, if the computer is configured to use the short date format mm/dd/yyyy, enter 09/01/2018 to specify September 1, 2018.
+
+Yesterday is the most recent date that you can specify. You can't specify a date that's older than 10 days.
 
 ```yaml
 Type: System.DateTime
