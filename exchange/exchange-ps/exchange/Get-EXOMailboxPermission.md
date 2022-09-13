@@ -1,44 +1,32 @@
 ---
 external help file: Microsoft.Exchange.Management.RestApiClient.dll-Help.xml
-Module Name: ExchangeOnlineManagement
+Module Name: exchangeonlinemanagement
 online version: https://docs.microsoft.com/powershell/module/exchange/get-exomailboxpermission
-applicable: Exchange Online
-title: Get-EXOMailboxPermission
 schema: 2.0.0
-author: chrisda
-ms.author: chrisda
-ms.reviewer:
 ---
 
 # Get-EXOMailboxPermission
 
 ## SYNOPSIS
-This cmdlet is available only in the Exchange Online PowerShell V2 module. For more information, see [About the Exchange Online PowerShell V2 module](https://docs.microsoft.com/powershell/exchange/exchange-online-powershell-v2).
+This cmdlet is available in the Exchange Online PowerShell V2 and V3 modules. For more information, see [About the Exchange Online PowerShell V2 module]( https://aka.ms/exov2-module) or for V3 Module see - https://aka.ms/exov3-module). The examples/references described below for V2 are also applicable for V3 Module.
 
 Use the Get-EXOMailboxPermission cmdlet to retrieve permissions on a mailbox.
 
-For information about the parameter sets in the Syntax section below, see [Exchange cmdlet syntax](https://docs.microsoft.com/powershell/exchange/exchange-cmdlet-syntax).
+For information about the parameter sets in the Syntax section below, see Exchange cmdlet syntax (https://docs.microsoft.com/powershell/exchange/exchange-cmdlet-syntax).
 
 ## SYNTAX
 
 ### Default (Default)
 ```
-Get-EXOMailboxPermission [-ResultSize <Unlimited>]
+Get-EXOMailboxPermission [-ResultSize <Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]>]
  [<CommonParameters>]
 ```
 
 ### Identity
 ```
-Get-EXOMailboxPermission
- [-ExternalDirectoryObjectId <Guid>]
- [-Identity <String>]
- [-Owner]
- [-PrimarySmtpAddress <String>]
- [-ResultSize <Unlimited>]
- [-SoftDeletedMailbox]
- [-User <String>]
- [-UserPrincipalName <String>]
- [<CommonParameters>]
+Get-EXOMailboxPermission [-User <String>] [-Owner] [-SoftDeletedMailbox] [-Identity <String>]
+ [-ExternalDirectoryObjectId <Guid>] [-UserPrincipalName <String>] [-PrimarySmtpAddress <String>]
+ [-ResultSize <Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -63,7 +51,7 @@ By default, other security groups and role groups inherit permissions to mailbox
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 Get-EXOMailboxPermission -Identity john@contoso.com
 ```
 
@@ -80,7 +68,6 @@ You can't use this parameter with the Identity, PrimarySmtpAddress, or UserPrinc
 Type: Guid
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -90,9 +77,11 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-The Identity parameter specifies the mailbox you want to view. For the best performance, we recommend using the user ID or user principal name (UPN) to identify the mailbox.
+The Identity parameter specifies the mailbox you want to view.
+For the best performance, we recommend using the user ID or user principal name (UPN) to identify the mailbox.
 
-Otherwise, you can use any value that uniquely identifies the mailbox. For example:
+Otherwise, you can use any value that uniquely identifies the mailbox.
+For example:
 
 - Name
 - Alias
@@ -106,27 +95,26 @@ You can't use this parameter with the ExternalDirectoryObjectId, PrimarySmtpAddr
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
 ### -Owner
-The Owner switch returns the owner information for the mailbox that's specified by the Identity parameter. You don't need to specify a value with this switch.
+The Owner switch returns the owner information for the mailbox that's specified by the Identity parameter.
+You don't need to specify a value with this switch.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -140,7 +128,6 @@ You can't use this parameter with the ExternalDirectoryObjectId, Identity, or Us
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -150,13 +137,14 @@ Accept wildcard characters: False
 ```
 
 ### -ResultSize
-The ResultSize parameter specifies the maximum number of results to return. If you want to return all requests that match the query, use unlimited for the value of this parameter. The default value is 1000.
+The ResultSize parameter specifies the maximum number of results to return.
+If you want to return all requests that match the query, use unlimited for the value of this parameter.
+The default value is 1000.
 
 ```yaml
-Type: Unlimited
+Type: Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -166,7 +154,8 @@ Accept wildcard characters: False
 ```
 
 ### -SoftDeletedMailbox
-The SoftDeletedMailbox switch is required to return soft-deleted mailboxes in the results. You don't need to specify a value with this switch.
+The SoftDeletedMailbox switch is required to return soft-deleted mailboxes in the results.
+You don't need to specify a value with this switch.
 
 Soft-deleted mailboxes are deleted mailboxes that are still recoverable.
 
@@ -174,11 +163,10 @@ Soft-deleted mailboxes are deleted mailboxes that are still recoverable.
 Type: SwitchParameter
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -186,20 +174,19 @@ Accept wildcard characters: False
 ### -User
 The User parameter returns information about the user who has permissions to the mailbox specified by the Identity parameter.
 
-The user that you specify for this parameter must be a user or security group (a security principal that can have permissions assigned). You can use any value that uniquely identifies the user. For example:
+The user that you specify for this parameter must be a user or security group (a security principal that can have permissions assigned).
+You can use any value that uniquely identifies the user.
+For example:
 
 - Name
 - Distinguished name (DN)
 - Canonical DN
-- GUID
-
-**Note**: Currently, the value that you provide for this parameter is case sensitive.
+- GUID Note : Currently, the value that you provide for this parameter is case sensitive.
 
 ```yaml
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -217,7 +204,6 @@ You can't use this parameter with the ExternalDirectoryObjectId, Identity, or Pr
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -227,7 +213,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/p/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

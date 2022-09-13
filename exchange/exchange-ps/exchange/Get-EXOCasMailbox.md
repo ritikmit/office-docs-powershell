@@ -1,72 +1,48 @@
 ---
 external help file: Microsoft.Exchange.Management.RestApiClient.dll-Help.xml
-Module Name: ExchangeOnlineManagement
+Module Name: exchangeonlinemanagement
 online version: https://docs.microsoft.com/powershell/module/exchange/get-exocasmailbox
-applicable: Exchange Online
-title: Get-EXOCasMailbox
 schema: 2.0.0
-author: chrisda
-ms.author: chrisda
-ms.reviewer:
 ---
 
 # Get-EXOCasMailbox
 
 ## SYNOPSIS
-This cmdlet is available only in the Exchange Online PowerShell V2 module. For more information, see [About the Exchange Online PowerShell V2 module](https://docs.microsoft.com/powershell/exchange/exchange-online-powershell-v2).
+This cmdlet is available in the Exchange Online PowerShell V2 and V3 modules. For more information, see [About the Exchange Online PowerShell V2 module]( https://aka.ms/exov2-module) or for V3 Module see - https://aka.ms/exov3-module). The examples/references described below for V2 are also applicable for V3 Module.
 
 Use the Get-EXOCasMailbox cmdlet to view the Client Access settings that are configured on mailboxes.
 
-For information about the parameter sets in the Syntax section below, see [Exchange cmdlet syntax](https://docs.microsoft.com/powershell/exchange/exchange-cmdlet-syntax).
+For information about the parameter sets in the Syntax section below, see Exchange cmdlet syntax (https://docs.microsoft.com/powershell/exchange/exchange-cmdlet-syntax).
 
 ## SYNTAX
 
 ### Identity (Default)
 ```
-Get-EXOCasMailbox [[-Identity] <String>]
- [-ActiveSyncDebugLogging]
- [-ExternalDirectoryObjectId <Guid>]
- [-Filter <String>]
- [-GetImapProtocolLog]
- [-GetPopProtocolLog]
- [-IgnoreDefaultScope]
- [-OrganizationalUnit <String>]
- [-PrimarySmtpAddress <String>]
- [-Properties <String[]>]
- [-PropertySets <PropertySet[]>]
- [-ProtocolSettings]
- [-ReadIsOptimizedForAccessibility]
- [-ResultSize <Unlimited>]
- [-SendLogsTo <String[]>]
- [-UserPrincipalName <String>]
- [<CommonParameters>]
+Get-EXOCasMailbox [-Filter <String>] [-OrganizationalUnit <String>] [-Properties <String[]>]
+ [-PropertySets <PropertySet[]>] [-ProtocolSettings] [-ActiveSyncDebugLogging]
+ [-ReadIsOptimizedForAccessibility] [-IgnoreDefaultScope] [-GetImapProtocolLog] [-GetPopProtocolLog]
+ [-SendLogsTo <System.Collections.Generic.List`1[System.String]>] [[-Identity] <String>]
+ [-ExternalDirectoryObjectId <Guid>] [-UserPrincipalName <String>] [-PrimarySmtpAddress <String>]
+ [-ResultSize <Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]>] [<CommonParameters>]
 ```
 
 ### Anr
 ```
-Get-EXOCasMailbox [-Anr <String>]
- [-ActiveSyncDebugLogging]
- [-Filter <String>]
- [-GetImapProtocolLog]
- [-GetPopProtocolLog]
- [-IgnoreDefaultScope]
- [-OrganizationalUnit <String>]
- [-Properties <String[]>]
- [-PropertySets <PropertySet[]>]
- [-ProtocolSettings]
- [-ReadIsOptimizedForAccessibility]
- [-ResultSize <Unlimited>]
- [-SendLogsTo <String[]>]
- [<CommonParameters>]
+Get-EXOCasMailbox [-Filter <String>] [-Anr <String>] [-OrganizationalUnit <String>] [-Properties <String[]>]
+ [-PropertySets <PropertySet[]>] [-ProtocolSettings] [-ActiveSyncDebugLogging]
+ [-ReadIsOptimizedForAccessibility] [-IgnoreDefaultScope] [-GetImapProtocolLog] [-GetPopProtocolLog]
+ [-SendLogsTo <System.Collections.Generic.List`1[System.String]>]
+ [-ResultSize <Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet returns a variety of client access settings for one or more mailboxes. These settings include options for Outlook on the web, Exchange ActiveSync, POP3, and IMAP4.
+This cmdlet returns a variety of client access settings for one or more mailboxes.
+These settings include options for Outlook on the web, Exchange ActiveSync, POP3, and IMAP4.
 
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 Get-EXOCASMailbox -Identity "JeffHay@contoso.com"
 ```
 
@@ -83,17 +59,19 @@ This example returns the values of the following client access settings for the 
 ## PARAMETERS
 
 ### -Identity
-The Identity parameter specifies the mailbox you want to view. For the best performance, we recommend using the following values:
+The Identity parameter specifies the mailbox you want to view.
+For the best performance, we recommend using the following values:
 
 - User ID or user principal name (UPN)
 - GUID
 
-Otherwise, you can use any other value that uniquely identifies the mailbox. For example:
+Otherwise, you can use any other value that uniquely identifies the mailbox.
+For example:
 
 - Name
 - Alias
 - Distinguished name (DN)
-- Domain\\Username
+- Domain\Username
 - Email address
 - LegacyExchangeDN
 - SamAccountName
@@ -104,7 +82,6 @@ You can't use this parameter with the Anr, ExternalDirectoryObjectId, PrimarySmt
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: 0
@@ -114,7 +91,9 @@ Accept wildcard characters: False
 ```
 
 ### -Anr
-The Anr parameter specifies a string on which to perform an ambiguous name resolution (ANR) search. You can specify a partial string and search for objects with an attribute that matches that string. The default attributes searched are:
+The Anr parameter specifies a string on which to perform an ambiguous name resolution (ANR) search.
+You can specify a partial string and search for objects with an attribute that matches that string.
+The default attributes searched are:
 
 - CommonName (CN)
 - DisplayName
@@ -128,7 +107,6 @@ You can't use this parameter with the ExternalDirectoryObjectId, Identity, Prima
 Type: String
 Parameter Sets: Anr
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -144,11 +122,10 @@ This parameter is reserved for internal Microsoft use.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -162,7 +139,6 @@ You can't use this parameter with the Anr, Identity, PrimarySmtpAddress, or User
 Type: Guid
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -172,22 +148,21 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-The Filter parameter uses OPath syntax to filter the results by the specified properties and values. The search criteria uses the syntax `"Property -ComparisonOperator 'Value'"`.
+The Filter parameter uses OPath syntax to filter the results by the specified properties and values.
+The search criteria uses the syntax \`"Property -ComparisonOperator 'Value'"\`.
 
-- Enclose the whole OPath filter in double quotation marks " ". If the filter contains system values (for example, `$true`, `$false`, or `$null`), use single quotation marks ' ' instead. Although this parameter is a string (not a system block), you can also use braces { }, but only if the filter doesn't contain variables.
-- Property is a filterable property. For more information about the filterable properties, see [Get-EXOCasMailbox property sets](https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exocasmailbox-property-sets) and [Filterable properties for the Filter parameter](https://docs.microsoft.com/powershell/exchange/filter-properties).
-- ComparisonOperator is an OPath comparison operator (for example `-eq` for equals and `-like` for string comparison). For more information about comparison operators, see [about_Comparison_Operators](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_comparison_operators).
-- Value is the property value to search for. Enclose text values and variables in single quotation marks (`'Value'` or `'$Variable'`). If a variable value contains single quotation marks, you need to identify (escape) the single quotation marks to expand the variable correctly. For example, instead of `'$User'`, use `'$($User -Replace "'","''")'`. Don't enclose integers or system values in quotation marks (for example, use `500`, `$true`, `$false`, or `$null` instead).
+- Enclose the whole OPath filter in double quotation marks " ". If the filter contains system values (for example, \`$true\`, \`$false\`, or \`$null\`), use single quotation marks ' ' instead. Although this parameter is a string (not a system block), you can also use braces { }, but only if the filter doesn't contain variables.
+- Property is a filterable property. For more information about the filterable properties, see Get-EXOCasMailbox property sets (https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exocasmailbox-property-sets) and \[Filterable properties for the Filter parameter\](https://docs.microsoft.com/powershell/exchange/filter-properties). - ComparisonOperator is an OPath comparison operator (for example \`-eq\` for equals and \`-like\` for string comparison). For more information about comparison operators, see about_Comparison_Operators (https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_comparison_operators). - Value is the property value to search for. Enclose text values and variables in single quotation marks (\`'Value'\` or \`'$Variable'\`). If a variable value contains single quotation marks, you need to identify (escape) the single quotation marks to expand the variable correctly. For example, instead of \`'$User'\`, use \`'$($User -Replace "'","''")'\`. Don't enclose integers or system values in quotation marks (for example, use \`500\`, \`$true\`, \`$false\`, or \`$null\` instead).
 
-You can chain multiple search criteria together using the logical operators `-and` and `-or`. For example, `"Criteria1 -and Criteria2"` or `"(Criteria1 -and Criteria2) -or Criteria3"`.
+You can chain multiple search criteria together using the logical operators \`-and\` and \`-or\`.
+For example, \`"Criteria1 -and Criteria2"\` or \`"(Criteria1 -and Criteria2) -or Criteria3"\`.
 
-For detailed information about OPath filters in Exchange, see [Additional OPATH syntax information](https://docs.microsoft.com/powershell/exchange/recipient-filters#additional-opath-syntax-information).
+For detailed information about OPath filters in Exchange, see Additional OPATH syntax information (https://docs.microsoft.com/powershell/exchange/recipient-filters#additional-opath-syntax-information).
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -203,11 +178,10 @@ This parameter is reserved for internal Microsoft use.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -219,11 +193,10 @@ This parameter is reserved for internal Microsoft use.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -235,17 +208,20 @@ This parameter is reserved for internal Microsoft use.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -OrganizationalUnit
-The OrganizationalUnit parameter filters the results based on the object's location in Active Directory. Only objects that exist in the specified location are returned. Valid input for this parameter is an organizational unit (OU) or domain that's visible using the Get-OrganizationalUnit cmdlet. You can use any value that uniquely identifies the OU or domain. For example:
+The OrganizationalUnit parameter filters the results based on the object's location in Active Directory.
+Only objects that exist in the specified location are returned.
+Valid input for this parameter is an organizational unit (OU) or domain that's visible using the Get-OrganizationalUnit cmdlet.
+You can use any value that uniquely identifies the OU or domain.
+For example:
 
 - Name
 - Canonical name
@@ -256,7 +232,6 @@ The OrganizationalUnit parameter filters the results based on the object's locat
 Type: String
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -274,7 +249,6 @@ You can't use this parameter with the Anr, ExternalDirectoryObjectId, Identity, 
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -284,15 +258,15 @@ Accept wildcard characters: False
 ```
 
 ### -Properties
-The Properties parameter specifies the properties that are returned in the output of this cmdlet. You can specify multiple values separated by commas.
+The Properties parameter specifies the properties that are returned in the output of this cmdlet.
+You can specify multiple values separated by commas.
 
-For more information about the available properties, see [Get-EXOCasMailbox property sets](https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exocasmailbox-property-sets).
+For more information about the available properties, see Get-EXOCasMailbox property sets (https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exocasmailbox-property-sets).
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -302,7 +276,8 @@ Accept wildcard characters: False
 ```
 
 ### -PropertySets
-The PropertySets parameter specifies a logical grouping of properties that are returned in the output of this cmdlet. Valid values are:
+The PropertySets parameter specifies a logical grouping of properties that are returned in the output of this cmdlet.
+Valid values are:
 
 - Minimum (this is the default value)
 - ActiveSync
@@ -315,13 +290,12 @@ The PropertySets parameter specifies a logical grouping of properties that are r
 
 You can specify multiple values separated by commas.
 
-For more information about the properties that are included in each property set, see [Get-EXOCasMailbox property sets](https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exocasmailbox-property-sets).
+For more information about the properties that are included in each property set, see Get-EXOCasMailbox property sets (https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exocasmailbox-property-sets).
 
 ```yaml
 Type: PropertySet[]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -342,17 +316,17 @@ The ProtocolSettings switch returns the server names, TCP ports and encryption m
 
 You don't need to specify a value with this switch.
 
-To see these values, you need to use a formatting cmdlet. For example, `Get-CasMailbox laura@contoso.com -ProtocolSettings | Format-List`.
+To see these values, you need to use a formatting cmdlet.
+For example, \`Get-CasMailbox laura@contoso.com -ProtocolSettings | Format-List\`.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -364,23 +338,23 @@ This parameter is reserved for internal Microsoft use.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -ResultSize
-The ResultSize parameter specifies the maximum number of results to return. If you want to return all requests that match the query, use unlimited for the value of this parameter. The default value is 1000.
+The ResultSize parameter specifies the maximum number of results to return.
+If you want to return all requests that match the query, use unlimited for the value of this parameter.
+The default value is 1000.
 
 ```yaml
-Type: Unlimited
+Type: Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -393,10 +367,9 @@ Accept wildcard characters: False
 This parameter is reserved for internal Microsoft use.
 
 ```yaml
-Type: String[]
+Type: System.Collections.Generic.List`1[System.String]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -414,7 +387,6 @@ You can't use this parameter with the Anr, ExternalDirectoryObjectId, Identity o
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -424,7 +396,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/p/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

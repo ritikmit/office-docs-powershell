@@ -1,62 +1,60 @@
 ---
 external help file: Microsoft.Exchange.Management.RestApiClient.dll-Help.xml
-Module Name: ExchangeOnlineManagement
+Module Name: exchangeonlinemanagement
 online version: https://docs.microsoft.com/powershell/module/exchange/get-exorecipientpermission
-applicable: Exchange Online
-title: Get-EXORecipientPermission
 schema: 2.0.0
-author: chrisda
-ms.author: chrisda
-ms.reviewer:
 ---
 
 # Get-EXORecipientPermission
 
 ## SYNOPSIS
-This cmdlet is available only in the Exchange Online PowerShell V2 module. For more information, see [About the Exchange Online PowerShell V2 module](https://docs.microsoft.com/powershell/exchange/exchange-online-powershell-v2).
+This cmdlet is available in the Exchange Online PowerShell V2 and V3 modules. For more information, see [About the Exchange Online PowerShell V2 module]( https://aka.ms/exov2-module) or for V3 Module see - https://aka.ms/exov3-module). The examples/references described below for V2 are also applicable for V3 Module.
 
 Use the Get-EXORecipientPermission cmdlet to view information about SendAs permissions that are configured for users in a cloud-based organization.
 
-For information about the parameter sets in the Syntax section below, see [Exchange cmdlet syntax](https://docs.microsoft.com/powershell/exchange/exchange-cmdlet-syntax).
+For information about the parameter sets in the Syntax section below, see Exchange cmdlet syntax (https://docs.microsoft.com/powershell/exchange/exchange-cmdlet-syntax).
 
 ## SYNTAX
 
 ### Default (Default)
 ```
-Get-EXORecipientPermission
- [-AccessRights <MultiValuedProperty>]
- [-ResultSize <Unlimited>]
- [-Trustee <String>]
- [<CommonParameters>]
+Get-EXORecipientPermission [-Trustee <String>]
+ [-AccessRights <System.Collections.Generic.HashSet`1[Microsoft.Exchange.Management.AdminApiProvider.RecipientAccessRight]>]
+ [-ResultSize <Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]>] [<CommonParameters>]
 ```
 
 ### Identity
 ```
-Get-EXORecipientPermission [[-Identity] <String>]
- [-AccessRights <MultiValuedProperty>]
- [-ExternalDirectoryObjectId <Guid>]
+Get-EXORecipientPermission [-Trustee <String>]
+ [-AccessRights <System.Collections.Generic.HashSet`1[Microsoft.Exchange.Management.AdminApiProvider.RecipientAccessRight]>]
+ [[-Identity] <String>] [-ExternalDirectoryObjectId <Guid>] [-UserPrincipalName <String>]
  [-PrimarySmtpAddress <String>]
- [-ResultSize <Unlimited>]
- [-Trustee <String>]
- [-UserPrincipalName <String>]
- [<CommonParameters>]
+ [-ResultSize <Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-This cmdlet is used to view/manage information about SendAs permissions that are configured for users in a cloud-based organization. Send As permission allows delegates to use the mailbox to send messages. After this permission is assigned to a delegate, any message that the delegate sends from the mailbox will appear to have been sent by the mailbox owner. However, this permission doesn't allow a delegate to sign in to the user's mailbox. It only allows users to open the mailbox. If this permission is assigned to a group, a message sent by the delegate will appear to have been sent by the group.
+This cmdlet is used to view/manage information about SendAs permissions that are configured for users in a cloud-based organization.
+Send As permission allows delegates to use the mailbox to send messages.
+After this permission is assigned to a delegate, any message that the delegate sends from the mailbox will appear to have been sent by the mailbox owner.
+However, this permission doesn't allow a delegate to sign in to the user's mailbox.
+It only allows users to open the mailbox.
+If this permission is assigned to a group, a message sent by the delegate will appear to have been sent by the group.
 
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 Get-EXORecipientPermission -ResultSize 100
 ```
+
 Above example returns recipient permission for first 100 mailbox users in the name sorted order.
 
 ## PARAMETERS
 
 ### -Identity
-The Identity parameter identifies the recipient that you want to view. The user or group specified by the Trustee parameter has Send As permissions on this recipient. You can specify any type of recipient, for example:
+The Identity parameter identifies the recipient that you want to view.
+The user or group specified by the Trustee parameter has Send As permissions on this recipient.
+You can specify any type of recipient, for example:
 
 - Mailboxes
 - Mail users
@@ -69,12 +67,13 @@ For the best performance, we recommend using the following values to identify th
 - User ID or user principal name (UPN)
 - GUID
 
-Otherwise, you can use any value that uniquely identifies the mailbox. For example:
+Otherwise, you can use any value that uniquely identifies the mailbox.
+For example:
 
 - Name
 - Alias
 - Distinguished name (DN)
-- Domain\\Username
+- Domain\Username
 - Email address
 - LegacyExchangeDN
 - SamAccountName
@@ -85,7 +84,6 @@ You can't use this parameter with the ExternalDirectoryObjectId, PrimarySmtpAddr
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: 0
@@ -95,13 +93,13 @@ Accept wildcard characters: False
 ```
 
 ### -AccessRights
-The AccessRights parameter filters the results by permission. The only valid value for this parameter is SendAs.
+The AccessRights parameter filters the results by permission.
+The only valid value for this parameter is SendAs.
 
 ```yaml
-Type: MultiValuedProperty
+Type: System.Collections.Generic.HashSet`1[Microsoft.Exchange.Management.AdminApiProvider.RecipientAccessRight]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -119,7 +117,6 @@ You can't use this parameter with the Identity, PrimarySmtpAddress, or UserPrinc
 Type: Guid
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -137,7 +134,6 @@ You can't use this parameter with the ExternalDirectoryObjectId, Identity, or Us
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -147,13 +143,14 @@ Accept wildcard characters: False
 ```
 
 ### -ResultSize
-The ResultSize parameter specifies the maximum number of results to return. If you want to return all requests that match the query, use unlimited for the value of this parameter. The default value is 1000.
+The ResultSize parameter specifies the maximum number of results to return.
+If you want to return all requests that match the query, use unlimited for the value of this parameter.
+The default value is 1000.
 
 ```yaml
-Type: Unlimited
+Type: Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -163,19 +160,21 @@ Accept wildcard characters: False
 ```
 
 ### -Trustee
-The Trustee parameter filters the results by the user or group who has Send As permissions. You can specify the following types of users or groups:
+The Trustee parameter filters the results by the user or group who has Send As permissions.
+You can specify the following types of users or groups:
 
 - Mailbox users
 - Mail users with a Microsoft account
 - Security groups
 
-You can use any value that uniquely identifies the user or group. For example:
+You can use any value that uniquely identifies the user or group.
+For example:
 
 - Name
 - Alias
 - Distinguished name (DN)
 - Canonical DN
-- Domain\\Username
+- Domain\Username
 - Email address
 - User Principal name (UPN)
 
@@ -183,9 +182,8 @@ You need to use this parameter with the Identity, PrimarySmtpAddress, UserPrinci
 
 ```yaml
 Type: String
-Parameter Sets: Identity
+Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -203,7 +201,6 @@ You can't use this parameter with the ExternalDirectoryObjectId, Identity, or Pr
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -213,7 +210,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/p/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

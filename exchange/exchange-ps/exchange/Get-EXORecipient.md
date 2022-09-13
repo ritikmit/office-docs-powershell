@@ -1,73 +1,54 @@
 ---
 external help file: Microsoft.Exchange.Management.RestApiClient.dll-Help.xml
-Module Name: ExchangeOnlineManagement
+Module Name: exchangeonlinemanagement
 online version: https://docs.microsoft.com/powershell/module/exchange/get-exorecipient
-applicable: Exchange Online
-title: Get-EXORecipient
 schema: 2.0.0
-author: chrisda
-ms.author: chrisda
-ms.reviewer:
 ---
 
 # Get-EXORecipient
 
 ## SYNOPSIS
-This cmdlet is available only in the Exchange Online PowerShell V2 module. For more information, see [About the Exchange Online PowerShell V2 module](https://docs.microsoft.com/powershell/exchange/exchange-online-powershell-v2).
+This cmdlet is available in the Exchange Online PowerShell V2 and V3 modules. For more information, see [About the Exchange Online PowerShell V2 module]( https://aka.ms/exov2-module) or for V3 Module see - https://aka.ms/exov3-module). The examples/references described below for V2 are also applicable for V3 Module.
 
-Use the Get-ExORecipient cmdlet to view existing recipient objects in your organization. This cmdlet returns all mail-enabled objects (for example, mailboxes, mail users, mail contacts, and distribution groups).
+Use the Get-ExORecipient cmdlet to view existing recipient objects in your organization.
+This cmdlet returns all mail-enabled objects (for example, mailboxes, mail users, mail contacts, and distribution groups).
 
-For information about the parameter sets in the Syntax section below, see [Exchange cmdlet syntax](https://docs.microsoft.com/powershell/exchange/exchange-cmdlet-syntax).
+For information about the parameter sets in the Syntax section below, see Exchange cmdlet syntax (https://docs.microsoft.com/powershell/exchange/exchange-cmdlet-syntax).
 
 ## SYNTAX
 
 ### Identity (Default)
 ```
-Get-EXORecipient [[-Identity] <String>]
- [-ExternalDirectoryObjectId <Guid>]
- [-Filter <String>]
- [-IncludeSoftDeletedRecipients]
- [-OrganizationalUnit <String>]
- [-PrimarySmtpAddress <String>]
- [-Properties <String[]>]
- [-PropertySets <PropertySet[]>]
- [-RecipientPreviewFilter <String>]
- [-RecipientType <String[]>]
- [-RecipientTypeDetails <String[]>]
- [-ResultSize <Unlimited>]
- [-UserPrincipalName <String>]
- [<CommonParameters>]
+Get-EXORecipient [-Filter <String>] [-OrganizationalUnit <String>] [-Properties <String[]>]
+ [-PropertySets <PropertySet[]>] [-IncludeSoftDeletedRecipients] [-RecipientType <String[]>]
+ [-RecipientTypeDetails <String[]>] [-RecipientPreviewFilter <String>] [[-Identity] <String>]
+ [-ExternalDirectoryObjectId <Guid>] [-UserPrincipalName <String>] [-PrimarySmtpAddress <String>]
+ [-ResultSize <Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]>] [<CommonParameters>]
 ```
 
 ### Anr
 ```
-Get-EXORecipient [-Anr <String>]
- [-Filter <String>]
- [-IncludeSoftDeletedRecipients]
- [-OrganizationalUnit <String>]
- [-Properties <String[]>]
- [-PropertySets <PropertySet[]>]
- [-RecipientPreviewFilter <String>]
- [-RecipientType <String[]>]
- [-RecipientTypeDetails <String[]>]
- [-ResultSize <Unlimited>]
- [<CommonParameters>]
+Get-EXORecipient [-Anr <String>] [-Filter <String>] [-OrganizationalUnit <String>] [-Properties <String[]>]
+ [-PropertySets <PropertySet[]>] [-IncludeSoftDeletedRecipients] [-RecipientType <String[]>]
+ [-RecipientTypeDetails <String[]>] [-RecipientPreviewFilter <String>]
+ [-ResultSize <Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get-EXORecipient cmdlet can be used to view existing recipient objects in your organization. This cmdlet returns all mail-enabled objects (for example, mailboxes, mail users, mail contacts, and distribution groups).
+Get-EXORecipient cmdlet can be used to view existing recipient objects in your organization.
+This cmdlet returns all mail-enabled objects (for example, mailboxes, mail users, mail contacts, and distribution groups).
 
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 Get-EXORecipient -ResultSize 100
 ```
 
 This example returns the first 100 recipient objects in name sorted order.
 
 ### Example 2
-```powershell
+```
 Get-EXORecipient -Identity john@contosot.com
 ```
 
@@ -76,17 +57,19 @@ This example returns the recipient attribute details for the user john@contoso.c
 ## PARAMETERS
 
 ### -Identity
-The Identity parameter specifies the recipient object that you want to view. For the best performance, we recommend using the following values to identify the recipient:
+The Identity parameter specifies the recipient object that you want to view.
+For the best performance, we recommend using the following values to identify the recipient:
 
 - User ID or user principal name (UPN)
 - GUID
 
-Otherwise, you can use any value that uniquely identifies the recipient. For example:
+Otherwise, you can use any value that uniquely identifies the recipient.
+For example:
 
 - Name
 - Alias
 - Distinguished name (DN)
-- Domain\\Username
+- Domain\Username
 - Email address
 - LegacyExchangeDN
 - SamAccountName
@@ -97,7 +80,6 @@ You can't use this parameter with the Anr, ExternalDirectoryObjectId, PrimarySmt
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: 0
@@ -107,7 +89,9 @@ Accept wildcard characters: False
 ```
 
 ### -Anr
-The Anr parameter specifies a string on which to perform an ambiguous name resolution (ANR) search. You can specify a partial string and search for objects with an attribute that matches that string. The default attributes searched are:
+The Anr parameter specifies a string on which to perform an ambiguous name resolution (ANR) search.
+You can specify a partial string and search for objects with an attribute that matches that string.
+The default attributes searched are:
 
 - CommonName (CN)
 - DisplayName
@@ -121,7 +105,6 @@ You can't use this parameter with the ExternalDirectoryObjectId, Identity, Prima
 Type: String
 Parameter Sets: Anr
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -139,7 +122,6 @@ You can't use this parameter with the Anr, Identity, PrimarySmtpAddress, or User
 Type: Guid
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -149,22 +131,21 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-The Filter parameter uses OPath syntax to filter the results by the specified properties and values. The search criteria uses the syntax `"Property -ComparisonOperator 'Value'"`.
+The Filter parameter uses OPath syntax to filter the results by the specified properties and values.
+The search criteria uses the syntax \`"Property -ComparisonOperator 'Value'"\`.
 
-- Enclose the whole OPath filter in double quotation marks " ". If the filter contains system values (for example, `$true`, `$false`, or `$null`), use single quotation marks ' ' instead. Although this parameter is a string (not a system block), you can also use braces { }, but only if the filter doesn't contain variables.
-- Property is a filterable property. For more information about the filterable properties, see [Get-EXORecipient property sets](https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exorecipient-property-sets) and [Filterable properties for the Filter parameter](https://docs.microsoft.com/powershell/exchange/filter-properties).
-- ComparisonOperator is an OPath comparison operator (for example `-eq` for equals and `-like` for string comparison). For more information about comparison operators, see [about_Comparison_Operators](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_comparison_operators).
-- Value is the property value to search for. Enclose text values and variables in single quotation marks (`'Value'` or `'$Variable'`). If a variable value contains single quotation marks, you need to identify (escape) the single quotation marks to expand the variable correctly. For example, instead of `'$User'`, use `'$($User -Replace "'","''")'`. Don't enclose integers or system values in quotation marks (for example, use `500`, `$true`, `$false`, or `$null` instead).
+- Enclose the whole OPath filter in double quotation marks " ". If the filter contains system values (for example, \`$true\`, \`$false\`, or \`$null\`), use single quotation marks ' ' instead. Although this parameter is a string (not a system block), you can also use braces { }, but only if the filter doesn't contain variables.
+- Property is a filterable property. For more information about the filterable properties, see Get-EXORecipient property sets (https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exorecipient-property-sets) and \[Filterable properties for the Filter parameter\](https://docs.microsoft.com/powershell/exchange/filter-properties). - ComparisonOperator is an OPath comparison operator (for example \`-eq\` for equals and \`-like\` for string comparison). For more information about comparison operators, see about_Comparison_Operators (https://docs.microsoft.com/powershell/module/microsoft.powershell.core/about/about_comparison_operators). - Value is the property value to search for. Enclose text values and variables in single quotation marks (\`'Value'\` or \`'$Variable'\`). If a variable value contains single quotation marks, you need to identify (escape) the single quotation marks to expand the variable correctly. For example, instead of \`'$User'\`, use \`'$($User -Replace "'","''")'\`. Don't enclose integers or system values in quotation marks (for example, use \`500\`, \`$true\`, \`$false\`, or \`$null\` instead).
 
-You can chain multiple search criteria together using the logical operators `-and` and `-or`. For example, `"Criteria1 -and Criteria2"` or `"(Criteria1 -and Criteria2) -or Criteria3"`.
+You can chain multiple search criteria together using the logical operators \`-and\` and \`-or\`.
+For example, \`"Criteria1 -and Criteria2"\` or \`"(Criteria1 -and Criteria2) -or Criteria3"\`.
 
-For detailed information about OPath filters in Exchange, see [Additional OPATH syntax information](https://docs.microsoft.com/powershell/exchange/recipient-filters#additional-opath-syntax-information).
+For detailed information about OPath filters in Exchange, see Additional OPATH syntax information (https://docs.microsoft.com/powershell/exchange/recipient-filters#additional-opath-syntax-information).
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -174,7 +155,8 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeSoftDeletedRecipients
-The IncludeSoftDeletedRecipients switch specifies whether to include soft deleted recipients in the results. You don't need to specify a value with this switch.
+The IncludeSoftDeletedRecipients switch specifies whether to include soft deleted recipients in the results.
+You don't need to specify a value with this switch.
 
 Soft-deleted recipients are deleted recipients that are still recoverable.
 
@@ -182,17 +164,20 @@ Soft-deleted recipients are deleted recipients that are still recoverable.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -OrganizationalUnit
-The OrganizationalUnit parameter filters the results based on the object's location in Active Directory. Only objects that exist in the specified location are returned. Valid input for this parameter is an organizational unit (OU) or domain that's visible using the Get-OrganizationalUnit cmdlet. You can use any value that uniquely identifies the OU or domain. For example:
+The OrganizationalUnit parameter filters the results based on the object's location in Active Directory.
+Only objects that exist in the specified location are returned.
+Valid input for this parameter is an organizational unit (OU) or domain that's visible using the Get-OrganizationalUnit cmdlet.
+You can use any value that uniquely identifies the OU or domain.
+For example:
 
 - Name
 - Canonical name
@@ -203,7 +188,6 @@ The OrganizationalUnit parameter filters the results based on the object's locat
 Type: String
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -221,7 +205,6 @@ You can't use this parameter with the Anr, ExternalDirectoryObjectId, Identity o
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -231,15 +214,15 @@ Accept wildcard characters: False
 ```
 
 ### -Properties
-The Properties parameter specifies the properties that are returned in the output of this cmdlet. You can specify multiple values separated by commas.
+The Properties parameter specifies the properties that are returned in the output of this cmdlet.
+You can specify multiple values separated by commas.
 
-For more information about the available properties, see [Get-EXORecipient property sets](https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exorecipient-property-sets).
+For more information about the available properties, see Get-EXORecipient property sets (https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exorecipient-property-sets).
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -249,7 +232,8 @@ Accept wildcard characters: False
 ```
 
 ### -PropertySets
-The PropertySets parameter specifies a logical grouping of properties that are returned in the output of this cmdlet. Valid values are:
+The PropertySets parameter specifies a logical grouping of properties that are returned in the output of this cmdlet.
+Valid values are:
 
 - Minimum (this is the default value)
 - Archive
@@ -257,13 +241,12 @@ The PropertySets parameter specifies a logical grouping of properties that are r
 - MailboxMove
 - Policy
 
-For more information about the properties that are included in each property set, see [Get-EXORecipient property sets](https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exorecipient-property-sets).
+For more information about the properties that are included in each property set, see Get-EXORecipient property sets (https://docs.microsoft.com/powershell/exchange/cmdlet-property-sets#get-exorecipient-property-sets).
 
 ```yaml
 Type: PropertySet[]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -279,7 +262,6 @@ This parameter is reserved for internal Microsoft use.
 Type: String
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -289,7 +271,8 @@ Accept wildcard characters: False
 ```
 
 ### -RecipientType
-The RecipientType parameter filters the results by the specified recipient type. Valid values are:
+The RecipientType parameter filters the results by the specified recipient type.
+Valid values are:
 
 - DynamicDistributionGroup
 - MailContact
@@ -306,7 +289,6 @@ You can specify multiple values separated by commas.
 Type: String[]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -316,7 +298,8 @@ Accept wildcard characters: False
 ```
 
 ### -RecipientTypeDetails
-The RecipientTypeDetails parameter filters the results by the specified recipient subtype. Valid values are:
+The RecipientTypeDetails parameter filters the results by the specified recipient subtype.
+Valid values are:
 
 - DiscoveryMailbox
 - DynamicDistributionGroup
@@ -348,13 +331,14 @@ The RecipientTypeDetails parameter filters the results by the specified recipien
 
 You can specify multiple values separated by commas.
 
-The value of the RecipientType parameter affects the values that you can use for this parameter. For example, if you use the RecipientType value MailContact, you can't use the value UserMailbox for this parameter. You'll receive the error: None of the specified RecipientTypeDetails are included in any specified recipient type.
+The value of the RecipientType parameter affects the values that you can use for this parameter.
+For example, if you use the RecipientType value MailContact, you can't use the value UserMailbox for this parameter.
+You'll receive the error: None of the specified RecipientTypeDetails are included in any specified recipient type.
 
 ```yaml
 Type: String[]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -364,13 +348,14 @@ Accept wildcard characters: False
 ```
 
 ### -ResultSize
-The ResultSize parameter specifies the maximum number of results to return. If you want to return all requests that match the query, use unlimited for the value of this parameter. The default value is 1000.
+The ResultSize parameter specifies the maximum number of results to return.
+If you want to return all requests that match the query, use unlimited for the value of this parameter.
+The default value is 1000.
 
 ```yaml
-Type: Unlimited
+Type: Microsoft.Exchange.Management.RestApiClient.Unlimited`1[System.UInt32]
 Parameter Sets: (All)
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -388,7 +373,6 @@ You can't use this parameter with the Anr, ExternalDirectoryObjectId, Identity, 
 Type: String
 Parameter Sets: Identity
 Aliases:
-Applicable: Exchange Online
 
 Required: False
 Position: Named
@@ -398,7 +382,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/p/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
